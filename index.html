@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+
+  <form id="myForm">
+    Name: <input type="text" id="name"><br><br>
+    <span id="nameMsg"></span><br><br>
+
+    Email: <input type="text" id="email"><br><br>
+    <span id="emailMsg"></span><br><br>
+
+    Password: <input type="password" id="password"><br><br>
+    <span id="passMsg"></span><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("myForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let valid = true;
+
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+
+      let nameMsg = document.getElementById("nameMsg");
+      let emailMsg = document.getElementById("emailMsg");
+      let passMsg = document.getElementById("passMsg");
+
+      // Name validation
+      if (name === "") {
+        nameMsg.innerHTML = "❌ Name is required";
+        valid = false;
+      } else {
+        nameMsg.innerHTML = "✅ Correct";
+      }
+
+      // Email validation
+      let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (email === "") {
+        emailMsg.innerHTML = "❌ Email is required";
+        valid = false;
+      } else if (!emailPattern.test(email)) {
+        emailMsg.innerHTML = "❌ Invalid email";
+        valid = false;
+      } else {
+        emailMsg.innerHTML = "✅ Correct";
+      }
+
+      // Password validation
+      if (password === "") {
+        passMsg.innerHTML = "❌ Password is required";
+        valid = false;
+      } else if (password.length < 6) {
+        passMsg.innerHTML = "❌ Password must be 6+ characters";
+        valid = false;
+      } else {
+        passMsg.innerHTML = "✅ Correct";
+      }
+
+      // Final submit
+      if (valid) {
+        alert("Form Submitted Successfully ✅");
+        form.reset();
+        nameMsg.innerHTML = "";
+        emailMsg.innerHTML = "";
+        passMsg.innerHTML = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
