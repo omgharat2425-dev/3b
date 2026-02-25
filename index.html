@@ -22,6 +22,9 @@
     Password: <input type="password" id="password"><br><br>
     <span id="passMsg"></span><br><br>
 
+    Age: <input type="number" id="age"><br><br>
+    <span id="ageMsg"></span><br><br>
+
     <button type="submit">Submit</button>
   </form>
 
@@ -36,52 +39,70 @@
       let name = document.getElementById("name").value;
       let email = document.getElementById("email").value;
       let password = document.getElementById("password").value;
+      let age = document.getElementById("age").value;
 
       let nameMsg = document.getElementById("nameMsg");
       let emailMsg = document.getElementById("emailMsg");
       let passMsg = document.getElementById("passMsg");
+      let ageMsg = document.getElementById("ageMsg");
 
       // Name validation
       if (name === "") {
-        nameMsg.innerHTML = "❌ Name is required";
+        nameMsg.innerHTML = "Name is required";
         valid = false;
       } else {
-        nameMsg.innerHTML = "✅ Correct";
+        nameMsg.innerHTML = "Correct";
       }
 
       // Email validation
       let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       if (email === "") {
-        emailMsg.innerHTML = "❌ Email is required";
+        emailMsg.innerHTML = "Email is required";
         valid = false;
       } else if (!emailPattern.test(email)) {
-        emailMsg.innerHTML = "❌ Invalid email";
+        emailMsg.innerHTML = "Invalid email";
         valid = false;
       } else {
-        emailMsg.innerHTML = "✅ Correct";
+        emailMsg.innerHTML = "Correct";
       }
 
       // Password validation
       if (password === "") {
-        passMsg.innerHTML = "❌ Password is required";
+        passMsg.innerHTML = "Password is required";
         valid = false;
       } else if (password.length < 6) {
-        passMsg.innerHTML = "❌ Password must be 6+ characters";
+        passMsg.innerHTML = "Password must be 6+ characters";
         valid = false;
       } else {
-        passMsg.innerHTML = "✅ Correct";
+        passMsg.innerHTML = "Correct";
+      }
+
+      // Age validation
+      if (age === "") {
+        ageMsg.innerHTML = "Age is required";
+        valid = false;
+      } else if (age < 18 || age > 60) {
+        ageMsg.innerHTML = "Age must be between 18 and 60";
+        valid = false;
+      } else {
+        ageMsg.innerHTML = "Correct";
       }
 
       // Final submit
       if (valid) {
-        alert("Form Submitted Successfully ✅");
+        alert("Form Submitted Successfully");
         form.reset();
         nameMsg.innerHTML = "";
         emailMsg.innerHTML = "";
         passMsg.innerHTML = "";
+        ageMsg.innerHTML = "";
       }
     });
+  </script>
+
+</body>
+</html>
   </script>
 
 </body>
